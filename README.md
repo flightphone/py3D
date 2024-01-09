@@ -1,0 +1,1 @@
+creating 3D models (file .obj) on python
