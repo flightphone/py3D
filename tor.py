@@ -45,8 +45,17 @@ def seashell_map(u, v):
     return (val, nor)
 
 def texture0(u, v):
-    u = (u % TAU)/(TAU + 0.1)
-    v = (v % TAU)/(TAU + 0.1)
+    u = (u % TAU)
+    if u <= PI:
+        u = u/PI
+    else:
+        u = (TAU - u)/PI    
+    v = (v % TAU)
+    if v <= PI:
+        v = v/PI
+    else:
+        v = (TAU - v)/PI    
+
     s = f'vt {u} {v}'
     return s
 
