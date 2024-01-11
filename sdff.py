@@ -154,13 +154,14 @@ def curve_norm2(t, f, r, curve):
     vt = curve(t)
     vth = curve(t+h)
     r1 = normalize(vth - vt)
-    x = normalize(cross(r1, vec3(0, 0, 1)))
-    if length(x) == 0:
-        x = vec3(1, 0, 0)
-        y = vec3(0, 1, 0)
-    else:
-        y = normalize(cross(x, r1))    
     
+    # x = normalize(cross(r1, vec3(0, 0, 1)))
+    # if length(x) == 0.:
+    #     x = vec3(1, 0, 0)
+    #     y = vec3(0, 1, 0)
+    # else:
+    #     y = normalize(cross(x, r1))    
+    x, y, z = getAxis(r1)
     nor = x*cos(f) + y*sin(f)
     val = curve(t) + nor*r
     return (val, nor, x, y, r1)

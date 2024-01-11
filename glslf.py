@@ -123,3 +123,12 @@ def cross(a, b):
 def smoothstep(edge0, edge1, x):
     x = clamp((x - edge0) / (edge1 - edge0), 0., 1.)
     return x * x * (3. - 2. * x)
+
+def getAxis(a):
+    a = normalize(a)
+    z = a
+    x  = vec3(1, 0, 0)
+    if a.x != 0.0: 
+        x = normalize(vec3(a.y, -a.x, 0))
+    y = normalize(cross(x, a))   
+    return (x, y, z)

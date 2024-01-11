@@ -45,16 +45,15 @@ def seashell_map(u, v):
     return (val, nor)
 
 def texture0(u, v):
-    u = (u % TAU)
-    if u <= PI:
-        u = u/PI
-    else:
-        u = (TAU - u)/PI    
-    v = (v % TAU)
-    if v <= PI:
-        v = v/PI
-    else:
-        v = (TAU - v)/PI    
+    u = u / TAU
+    v = v / TAU    
+
+    s = f'vt {u} {v}'
+    return s
+
+def texture7(u, v):
+    u = u / TAU / 7
+    v = v / TAU    
 
     s = f'vt {u} {v}'
     return s
@@ -114,7 +113,7 @@ def clelia_map(t, f):
 #https://mathcurve.com/courbes3d.gb/couture/couture.shtml
 def tennis(t):
     a = 3.
-    b = 2.5
+    b = 1
     c = 2 * math.sqrt(a*b)
     x = a*cos(t) + b*cos(3*t)
     y = a*sin(t) - b*sin(3*t)
@@ -161,13 +160,13 @@ def liss_map(t, f):
 #param_surf(rose_map, "rose33.obj", 500, 100, 0., 5.*TAU , 0., TAU)
 #param_surf(clelia_map, "clelia2.obj", 100, 100, 0., TAU , 0., TAU)
 #param_surf(liss_map, "liss22.obj", 700, 100, 0., 7.*TAU , 0., TAU)
-#param_surf(seashell_map, "seashell4.obj", 700, 100, 0., 7.*TAU , 0., TAU, texture0)
-param_surf(sine_map, "sine33.obj", 100, 100, 0., TAU , 0., TAU)
+param_surf(seashell_map, "seashell7.obj", 700, 100, 0., 7.*TAU , 0., TAU, texture7)
+#param_surf(sine_map, "sine33.obj", 100, 100, 0., TAU , 0., TAU)
 
 #n1 = param_surf(trefoil, "combo.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(clelia_map, "", 200, 100, 0., TAU , 0., TAU, n1)
 
-#param_surf(tennis_map, "tennis5.obj", 200, 50, 0., TAU , 0., TAU)
+#param_surf(tennis_map, "tennis7.obj", 200, 50, 0., TAU , 0., TAU, texture0)
 
 
 
