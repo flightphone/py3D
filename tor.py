@@ -155,14 +155,14 @@ def liss_map(t, f):
 
 #param_surf(map, "torp1.obj", 100, 100, 0., TAU , 0., TAU)
 #param_surf(cosn, "cosn2.obj", 100, 100, 0., TAU , 0., PI/4)
-#param_surf(trefoil, "trfoil22.obj", 100, 100, 0., TAU , 0., TAU)
+#param_surf(trefoil, "trfoil33.obj", 100, 100, 0., TAU , 0., TAU, texture0)
 #param_surf(eight, "eight_knot1.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(sinwave_map, "sinwave2.obj", 700, 50, 0., 7.*TAU , 0., TAU)
 #param_surf(rose_map, "rose33.obj", 500, 100, 0., 5.*TAU , 0., TAU)
 #param_surf(clelia_map, "clelia2.obj", 100, 100, 0., TAU , 0., TAU)
 #param_surf(liss_map, "liss22.obj", 700, 100, 0., 7.*TAU , 0., TAU)
-param_surf(seashell_map, "seashell4.obj", 700, 100, 0., 7.*TAU , 0., TAU, texture0)
-#param_surf(sine_map, "sine22.obj", 100, 100, 0., TAU , 0., TAU)
+#param_surf(seashell_map, "seashell4.obj", 700, 100, 0., 7.*TAU , 0., TAU, texture0)
+param_surf(sine_map, "sine33.obj", 100, 100, 0., TAU , 0., TAU)
 
 #n1 = param_surf(trefoil, "combo.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(clelia_map, "", 200, 100, 0., TAU , 0., TAU, n1)

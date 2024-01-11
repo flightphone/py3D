@@ -145,7 +145,7 @@ def curve_norm(t, f, r, curve, deriv = None):
     y = normalize(cross(x, r1))
     nor = x*cos(f) + y*sin(f)
     val = curve(t) + nor*r
-    return (val, nor)
+    return (val, nor, x, y, r1)
 
 
 #calculte normal and points on curve
@@ -163,7 +163,7 @@ def curve_norm2(t, f, r, curve):
     
     nor = x*cos(f) + y*sin(f)
     val = curve(t) + nor*r
-    return (val, nor)
+    return (val, nor, x, y, r1)
 
 #calculate normal to surface
 def normal_surf(u, v, surf):
