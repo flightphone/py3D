@@ -44,7 +44,10 @@ class vec3:
             return vec3(self.x / v, self.y / v, self.z / v)
     
     def xy(self):
-        return vec2(self.x, self.y)            
+        return vec2(self.x, self.y)        
+
+    def xz(self):
+        return vec2(self.x, self.z)        
             
 
 
@@ -132,3 +135,7 @@ def getAxis(a):
         x = normalize(vec3(a.y, -a.x, 0))
     y = normalize(cross(x, a))   
     return (x, y, z)
+
+def sign(n):
+    return (n >= 0) - (n < 0)
+        

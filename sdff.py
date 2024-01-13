@@ -18,7 +18,10 @@ def calcNormal(pos, map):
 
 nn = 128
 eps = 0.001
-dist_infin = 4.0
+dist_infin = 5.0
+
+def getRd(u, v):
+    return vec3(sin(v)*cos(u), sin(v)*sin(u), cos(v))
 
 def dist(ro, rd, map):
     t = 0.
@@ -85,7 +88,7 @@ def sphere_projection(map, fname, nx = 100, ny = 100, r = 2., osd = 1):
     
 
 
-def param_surf(map, fname, nx, ny, x0, x1 ,y0 , y1, txr = None, nvert = 0):
+def param_surf(map, fname, nx, ny, x0, x1 ,y0 , y1, txr = None, nvert = 0, *args):
     if fname!="":
         sys.stdout = open(fname, "w")
     
@@ -94,7 +97,10 @@ def param_surf(map, fname, nx, ny, x0, x1 ,y0 , y1, txr = None, nvert = 0):
         for j in range(ny):
             x = x0 + (x1-x0)*i/(nx-1)
             y = y0 + (y1-y0)*j/(ny-1)
-            d = map(x, y)
+            if args:
+                d = map(x, y, args)
+            else:    
+                d = map(x, y)
             if d:
                 print(d[0])
                 print(d[1].vn())
@@ -149,21 +155,24 @@ def curve_norm(t, f, r, curve, deriv = None):
 
 
 #calculte normal and points on curve
-def curve_norm2(t, f, r, curve):
+def curve_norm2(t, f, r, curve, *args):
     h = 0.0001
-    vt = curve(t)
-    vth = curve(t+h)
+    if args:
+        vt = curve(t, args)
+        vth = curve(t+h, args)
+    else:
+        vt = curve(t)
+        vth = curve(t+h)
+
     r1 = normalize(vth - vt)
-    
-    # x = normalize(cross(r1, vec3(0, 0, 1)))
-    # if length(x) == 0.:
-    #     x = vec3(1, 0, 0)
-    #     y = vec3(0, 1, 0)
-    # else:
-    #     y = normalize(cross(x, r1))    
     x, y, z = getAxis(r1)
     nor = x*cos(f) + y*sin(f)
-    val = curve(t) + nor*r
+    
+    if args:
+        val = curve(t, args) + nor*r
+    else:
+        val = curve(t) + nor*r    
+
     return (val, nor, x, y, r1)
 
 #calculate normal to surface

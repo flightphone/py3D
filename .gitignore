@@ -8,6 +8,7 @@ __pycache__/
 
 # models
 *.obj
+*.mtl
 
 # Distribution / packaging
 .Python

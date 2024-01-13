@@ -44,6 +44,10 @@ def texture0(u, v):
     u, v = u/TAU, v/PI
     return f'vt {u} {v}'     
 
+def texture4(u, v):
+    u, v = u/TAU/4, v/TAU
+    return f'vt {u} {v}'
+
 def sphere(u, v):
     r = 2
     nor = -vec3(sin(v)*cos(u), sin(v)*sin(u), cos(v))
@@ -71,7 +75,43 @@ def solenoid(t):
     return vec3((R + r*cos(n*t))*cos(t), (R + r*cos(n*t))*sin(t), r*sin(n*t))
 
 def solenoid_map(t, f):
-    return(curve_norm(t, f, 0.2, solenoid))
+    return(curve_norm(t, f, 1, solenoid))
 
-param_surf(solenoid_map, "solenoid.obj", 500, 100, 0., 4*TAU, 0., TAU)
+
+
+def larme(u, v):
+    a = 2
+    zoom = 1.5
+    l = a*sin(v)*sin(v/2)*sin(v/2)*zoom
+    z = a*cos(v)
+    x = l*cos(u)
+    y = l*sin(u)
+    return vec3(x, y, z)
+
+def larme_map(u, v):
+    h = PI/3
+    if v > h:
+        val = larme(u, v)
+        nor = normal_surf(u, v, larme)
+    else:
+        a = 2
+        zoom = 1.5
+        l = a*sin(h)*sin(h/2)*sin(h/2)*zoom
+        z = a*cos(h)
+        l = l*v/h
+        x = l*cos(u)
+        y = l*sin(u)
+        val = vec3(x, y, z)
+        nor = vec3(0, 0, -1)
+
+    return (val, nor)
+
+def larme_map2(u, v):
+    val, nor = larme_map(u, v)
+    val = val + nor*0.2
+    return (val, nor)
+
+#param_surf(solenoid_map, "solenoid.obj", 500, 100, 0., 4*TAU, 0., TAU, texture4)
 #param_surf(heir_map, "heir.obj", 400, 40, -1., h+1, 0., TAU, texture1)
+nvert = param_surf(larme_map, "larme9.obj", 100, 100, 0, TAU, 0, 0.9*PI, texture0)
+#param_surf(larme_map2, "", 100, 100, 0, TAU, 0, 0.9*PI, texture0, nvert)
