@@ -123,6 +123,15 @@ def tennis(t):
 def tennis_map(t, f):
     return curve_norm(t, f, 0.4, tennis)
 
+def comboTenniSine(u, v):
+    d1 = sinwave_map(u, v)[0]
+    d2 = seashell_map(u, v)[0]
+    return d1*0.5+d2*0.5
+
+def tennisine_map(u, v):
+    val = comboTenniSine(u, v)
+    nor = normal_surf(u, v, comboTenniSine)
+    return (val, nor)
 
 #https://mathcurve.com/courbes3d.gb/lissajous3d/lissajous3d.shtml
 
@@ -153,15 +162,17 @@ def liss_map(t, f):
     return curve_norm2(t, f, 0.2, liss)
 
 #param_surf(map, "torp1.obj", 100, 100, 0., TAU , 0., TAU)
-#param_surf(cosn, "cosn2.obj", 100, 100, 0., TAU , 0., PI/4)
+#param_surf(cosn, "cosn2.obj", 100, 100, TAU, 0 , 0., PI/4)
 #param_surf(trefoil, "trfoil33.obj", 100, 100, 0., TAU , 0., TAU, texture0)
 #param_surf(eight, "eight_knot1.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(sinwave_map, "sinwave2.obj", 700, 50, 0., 7.*TAU , 0., TAU)
 #param_surf(rose_map, "rose33.obj", 500, 100, 0., 5.*TAU , 0., TAU)
 #param_surf(clelia_map, "clelia2.obj", 100, 100, 0., TAU , 0., TAU)
 #param_surf(liss_map, "liss22.obj", 700, 100, 0., 7.*TAU , 0., TAU)
-param_surf(seashell_map, "seashell8.obj", 700, 100, 7.*TAU, 0, TAU, 0., texture7)
+#param_surf(seashell_map, "seashell8.obj", 700, 100, 7.*TAU, 0, TAU, 0., texture7)
 #param_surf(sine_map, "sine33.obj", 100, 100, 0., TAU , 0., TAU)
+
+param_surf(tennisine_map, "combo.obj", 700, 100, 0., 7*TAU , 0., TAU)
 
 #n1 = param_surf(trefoil, "combo.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(clelia_map, "", 200, 100, 0., TAU , 0., TAU, n1)
