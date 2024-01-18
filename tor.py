@@ -5,7 +5,7 @@ from sdff import *
 r0 = 2.
 r1 = 0.8
 
-def map(x, y):
+def tor_map(x, y):
     r = r0 + r1*cos(y)
     val = vec3(r*cos(x), r*sin(x), r1*sin(y))
     nor = vec3(cos(y)*cos(x), cos(y)*sin(x), sin(y))
@@ -161,7 +161,13 @@ def liss_map(t, f):
     #return curve_norm(t, f, 0.25, liss, liss_deriv)
     return curve_norm2(t, f, 0.2, liss)
 
-#param_surf(map, "torp1.obj", 100, 100, 0., TAU , 0., TAU)
+def sphere_map(t, f):
+    nor = getRd(t, f)
+    return (nor, nor)
+
+#param_surf(sphere_map, "sphere.obj", 100, 100, 0., TAU , PI, 0.)
+param_surf(trefoil, "trefoil.obj", 100, 100, 0., TAU , 0., TAU)
+#param_surf(tor_map, "torp1.obj", 100, 100, 0., TAU , 0., TAU)
 #param_surf(cosn, "cosn2.obj", 100, 100, TAU, 0 , 0., PI/4)
 #param_surf(trefoil, "trfoil33.obj", 100, 100, 0., TAU , 0., TAU, texture0)
 #param_surf(eight, "eight_knot1.obj", 200, 100, 0., TAU , 0., TAU)
@@ -172,7 +178,7 @@ def liss_map(t, f):
 #param_surf(seashell_map, "seashell8.obj", 700, 100, 7.*TAU, 0, TAU, 0., texture7)
 #param_surf(sine_map, "sine33.obj", 100, 100, 0., TAU , 0., TAU)
 
-param_surf(tennisine_map, "combo.obj", 700, 100, 0., 7*TAU , 0., TAU)
+#param_surf(tennisine_map, "combo.obj", 700, 100, 0., 7*TAU , 0., TAU)
 
 #n1 = param_surf(trefoil, "combo.obj", 200, 100, 0., TAU , 0., TAU)
 #param_surf(clelia_map, "", 200, 100, 0., TAU , 0., TAU, n1)
